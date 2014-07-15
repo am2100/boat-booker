@@ -1,5 +1,6 @@
 BoatBooker::Application.routes.draw do
   resources :bookings
+  root to: 'booking#show'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
