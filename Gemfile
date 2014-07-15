@@ -32,5 +32,5 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'haml'
+gem 'haml-rails', '~> 0.4.0'
 
