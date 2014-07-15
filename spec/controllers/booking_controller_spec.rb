@@ -10,8 +10,9 @@ RSpec.describe BookingController, :type => :controller do
 
     it 'makes an array of Bookings available to the view' do
       fake_results = [double('booking_01'), double('booking_02'), double('booking_03')]
+      Booking.stub(:find).and_return(fake_results)
       get :index
-      expect(assigns(:bookings)).to match_array(fake_results)      
+      expect(assigns(:bookings)).to match_array(fake_results)
     end
 
     it 'renders the :index view'
