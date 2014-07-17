@@ -12,5 +12,7 @@ RSpec.describe Booking, :type => :model do
     expect(Booking.new(from: nil)).to_not be_valid
   end
 
-  it 'is invalid without an end time'
+  it 'is invalid without an end time' do
+    expect(Booking.new(to: nil)).to_not be_valid
+  end
 end
