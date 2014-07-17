@@ -1,13 +1,13 @@
 require 'date'
+require 'time'
 
-Given(/^the following bookings exist:$/) do |bookings|
-  # table is a Cucumber::Ast::Table
+Given(/^the following bookings exist for today:$/) do |bookings|
+  today = Date.today.to_time
   bookings.hashes.each do |h|
-    from = Time.new(2014, 7, 17, h[:from])
-    to   = Time.new(2014, 7, 17, h[:to])
+    from = Time.parse(h[:from], today)
+    to   = Time.parse(h[:to]  , today)
     Booking.create!(from: from, to: to)
   end
-#  Booking.create!(bookings.hashes)
 end
 
 Then(/^I should see today's date$/) do
