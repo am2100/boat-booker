@@ -1,5 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Booking, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it 'is valid with a start and end time'
+  it 'is invalid without a start time'
+  it 'is invalid without an end time'
 end
