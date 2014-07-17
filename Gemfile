@@ -11,7 +11,7 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rspec-rails'
-  gem 'rspec-collection-matchers'
+  gem 'rspec-collection_matchers'
   gem 'simplecov', '~> 0.7.1', :require => false
 end
 
