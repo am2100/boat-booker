@@ -15,7 +15,14 @@ Then(/^I should see today's date$/) do
   expect(page).to have_content(date)
 end
 
-Then(/^the bookings list should include:$/) do |table|
+Then(/^the bookings list should include:$/) do |expected_table|
   # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+p expected_table.raw
+# save_and_open_page
+  rows = find("table#bookings").all('tr')
+p rows.class
+  table = rows.map { |r| r.all('th,td').map { |c| c.text.strip } }
+p table
+  expected_table.diff!(table)
+
 end
