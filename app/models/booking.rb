@@ -1,3 +1,3 @@
 class Booking < ActiveRecord::Base
-  attr_accessible :from, :name, :to
+  attr_accessible :from, :to
 end
