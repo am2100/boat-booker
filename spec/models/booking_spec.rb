@@ -9,7 +9,7 @@ RSpec.describe Booking, :type => :model do
     
   end
   it 'is invalid without a start time' do
-    expect(Booking.new(from: nil)).to have(1).errors_on(:from)
+    expect(Booking.new(from: nil)).to_not be_valid
   end
 
   it 'is invalid without an end time'
