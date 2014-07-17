@@ -1,2 +1,12 @@
 -# views/booking/index.html.haml
 %h1= Date.today
+%table#bookings
+  %thead
+    %tr
+      %th From
+      %th To
+  - @bookings.each do |b|
+    %tr
+      %td #{b.from.hour}:#{b.from.min}
+      %td #{b.to.hour}:#{b.to.min}
+      
