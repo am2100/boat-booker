@@ -1,31 +1,24 @@
-require 'date'
 require 'time'
 
 Given(/^the following bookings exist for today:$/) do |bookings|
-  today = Date.today.to_time
-  p bookings.raw
+  today = Time.now
   bookings.hashes.each do |h|
-    from = Time.parse(h['From'], today)
-    to   = Time.parse(h['To']  , today)
-    p from
-    p to
+    from_array = h['From'].split(':')
+    to_array   = h['To'].split(':')
+    from = Time.utc(today.year, today.month, today.day, from_array[0], from_array[1])
+    to   = Time.utc(today.year, today.month, today.day, to_array[0], to_array[1])
     Booking.create!(from: from, to: to)
   end
 end
 
 Then(/^I should see today's date$/) do
-  date = Date.today
+  today = Time.now
+  date = today.strftime("%d/%m/%Y")
   expect(page).to have_content(date)
 end
 
 Then(/^the bookings list should include:$/) do |expected_table|
-  # table is a Cucumber::Ast::Table
-#p expected_table.raw
-# save_and_open_page
   rows = find("table#bookings").all('tr')
-#p rows
   table = rows.map { |r| r.all('th,td').map { |c| c.text.strip } }
-p table
   expected_table.diff!(table)
-
 end
