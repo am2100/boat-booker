@@ -7,6 +7,7 @@
       %th To
   - @bookings.each do |b|
     %tr
-      %td #{b.from.hour}:#{b.from.min}
-      %td #{b.to.hour}:#{b.to.min}
-      
+      %td #{b.from.getlocal}
+      %td #{b.to}
+-#      %td #{b.from.hour}:#{b.from.min}
+-#      %td #{b.to.hour}:#{b.to.min}      

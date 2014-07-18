@@ -40,7 +40,7 @@ module BoatBooker
     # config.i18n.default_locale = :de
     
     # Silence [deprecated] warning
-    I18n.enforce_available_locales = false
+    I18n.enforce_available_locales = true
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
