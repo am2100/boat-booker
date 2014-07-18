@@ -28,8 +28,17 @@ RSpec.describe BookingsController, :type => :controller do
       get :new
     end
 
-    it 'makes a new Booking object available to the view'
-    it 'renders the :new view'
+    it 'makes a new Booking object available to the view' do
+      new_booking = Booking.new
+      allow(Booking).to receive(:new).and_return(new_booking)
+      get :new
+      expect(assigns(:booking)).to eq(new_booking)
+    end
+
+    it 'renders the :new view' do
+      get :new
+      expect(response).to render_template :new
+    end      
   end
 end
 
