@@ -5,8 +5,8 @@ Given(/^the following bookings exist for today:$/) do |bookings|
   today = Date.today.to_time
   p bookings.raw
   bookings.hashes.each do |h|
-    from = Time.parse(h[:from], today)
-    to   = Time.parse(h[:to]  , today)
+    from = Time.parse(h[:From], today)
+    to   = Time.parse(h[:To]  , today)
     p from
     p to
     Booking.create!(from: from, to: to)
