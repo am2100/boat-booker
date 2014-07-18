@@ -1,5 +1,6 @@
 -# views/booking/index.html.haml
-%h1= Date.today
+
+%h1= boat_booker_date(Time.now)
 %table#bookings
   %thead
     %tr
@@ -7,7 +8,5 @@
       %th To
   - @bookings.each do |b|
     %tr
-      %td #{b.from.getlocal}
-      %td #{b.to}
--#      %td #{b.from.hour}:#{b.from.min}
--#      %td #{b.to.hour}:#{b.to.min}      
+      %td #{boat_booker_time(b.from)}
+      %td #{boat_booker_time(b.to)}
