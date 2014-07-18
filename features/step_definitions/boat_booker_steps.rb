@@ -22,3 +22,11 @@ Then(/^the bookings list should include:$/) do |expected_table|
   table = rows.map { |r| r.all('th,td').map { |c| c.text.strip } }
   expected_table.diff!(table)
 end
+
+Then(/^I select (\d+):(\d+) from the 'From' dropdown menu$/) do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I select (\d+):(\d+) from the 'To' dropdown menu$/) do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
