@@ -24,7 +24,9 @@ Then(/^the bookings list should include:$/) do |expected_table|
 end
 
 Then(/^I select (\d+):(\d+) from the 'From' dropdown menu$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+#  select(arg1, {from: booking[from(4i)]})
+#  select(arg2, {from: booking[from(5i)]})
+  save_and_open_page
 end
 
 Then(/^I select (\d+):(\d+) from the 'To' dropdown menu$/) do |arg1, arg2|

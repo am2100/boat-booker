@@ -1,2 +1,7 @@
 -# views/booking/new.html.haml
 
+%h1= boat_booker_date(Time.now)
+
+= form_for @booking do |f|
+  = f.label :from, 'From'
+  = time_select(:booking, :from, { minute_step: 15, prompt: true })
