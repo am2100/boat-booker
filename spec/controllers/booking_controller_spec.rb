@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe BookingController, :type => :controller do
+RSpec.describe BookingsController, :type => :controller do
   describe 'GET #index' do
     it 'calls the find method of the Booking model' do
       fake_results = [double('booking_01'), double('booking_02'), double('booking_03')]
@@ -19,6 +19,17 @@ RSpec.describe BookingController, :type => :controller do
       get :index
       expect(response).to render_template :index
     end
+  end
+
+  describe 'GET #new' do
+    it 'calls the new method of the Booking model' do
+      new_booking = Booking.new
+      expect(Booking).to receive(:new).and_return(new_booking)
+      get :new
+    end
+
+    it 'makes a new Booking object available to the view'
+    it 'renders the :new view'
   end
 end
 
