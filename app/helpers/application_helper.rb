@@ -1,6 +1,5 @@
 module ApplicationHelper
   def boat_booker_date(date)
-    p date.class
     date.strftime("%d/%m/%Y")
   end
 
