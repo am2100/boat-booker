@@ -1,5 +1,9 @@
 Feature: A User can quickly view today's boat bookings
 
+As a User, I want to be able to see if I can book the 
+boat today so that I can take advantage of an unexpected 
+sunny day off
+
   Scenario: Arriving at the homepage
     Given the following bookings exist for today:
       | From  | To    |
