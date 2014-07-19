@@ -57,13 +57,25 @@ RSpec.describe BookingsController, :type => :controller do
           post :create, booking: FactoryGirl.attributes_for(:booking)
         }.to change(Booking, :count).by(1)
       end
-      it 'creates a flash[:notice] success message'
-      it 'renders the :index view'
+
+      it 'sets a flash[:notice] message' do
+        post :create
+        expect(flash[:notice]).to eq("Your booking was saved successfully")
+      end
+
+      it 'redirects to the :index view'
+
     end
 
     context 'with invalid attributes' do
-      it 'does not save the new Booking in the database'
-      it 're-renders the :new view'
+      it 'does not save the new Booking in the database' do
+        expect{
+          post :create, booking: FactoryGirl.attributes_for(:invalid_booking)
+        }.to_not change(Booking, :count)
+      end
+
+      it 're-renders the :new view' 
+
     end
   end
 end
