@@ -5,18 +5,11 @@ RSpec.describe Booking, :type => :model do
     expect(FactoryGirl.build(:booking)).to be_valid
   end
 
-  it 'is valid with a start and end time' do
-    from = Time.now
-    to   = 1.hour.from_now
-    booking = Booking.new(from: from, to: to)
-    expect(booking).to be_valid
-    
-  end
   it 'is invalid without a start time' do
-    expect(Booking.new(from: nil)).to_not be_valid
+    expect(FactoryGirl.build(:booking, from: nil)).to_not be_valid
   end
 
   it 'is invalid without an end time' do
-    expect(Booking.new(to: nil)).to_not be_valid
+    expect(FactoryGirl.build(:booking, to: nil)).to_not be_valid
   end
 end
