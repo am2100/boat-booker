@@ -59,11 +59,14 @@ RSpec.describe BookingsController, :type => :controller do
       end
 
       it 'sets a flash[:notice] message' do
-        post :create
+        post :create, booking: FactoryGirl.attributes_for(:booking)
         expect(flash[:notice]).to eq("Your booking was saved successfully")
       end
 
-      it 'redirects to the :index view'
+      it 'redirects to the homepage' do
+        post :create, booking: FactoryGirl.attributes_for(:booking)
+        expect(response).to redirect_to root_path
+      end
 
     end
 
@@ -74,8 +77,10 @@ RSpec.describe BookingsController, :type => :controller do
         }.to_not change(Booking, :count)
       end
 
-      it 're-renders the :new view' 
-
+      it 're-renders the :new view' do
+        post :create, booking: FactoryGirl.attributes_for(:invalid_booking)
+        expect(response).to render_template :new
+      end
     end
   end
 end
