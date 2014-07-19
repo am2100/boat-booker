@@ -13,6 +13,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rspec-collection_matchers'
   gem 'simplecov', '~> 0.7.1', :require => false
+  gem 'factory_girl_rails'
 end
 
 group :test do
