@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Booking, :type => :model do
+  it 'has a valid factory' do
+    expect(FactoryGirl.build(:booking)).to be_valid
+  end
+
   it 'is valid with a start and end time' do
     from = Time.now
     to   = 1.hour.from_now
