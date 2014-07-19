@@ -41,12 +41,20 @@ RSpec.describe BookingsController, :type => :controller do
     end      
   end
 
-  describe 'GET #create' do
+  describe 'POST #create' do
 
-    it 'calls the save method of the Booking model'
+    it 'calls the new method of the Booking model' do
+      new_booking = Booking.new
+      expect(Booking).to receive(:new).
+        with(FactoryGirl.attributes_for(:booking)).
+        and_return(new_booking)
+      post :create, booking: FactoryGirl.attributes_for(:booking)
+    end
 
     context 'with valid attributes' do
-      it 'saves the new Booking in the database'
+      it 'saves the new Booking in the database' do
+        
+      end
       it 'creates a flash[:notice] success message'
       it 'renders the :index view'
     end
