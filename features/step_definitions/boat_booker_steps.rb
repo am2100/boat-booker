@@ -23,12 +23,8 @@ Then(/^the bookings list should include:$/) do |expected_table|
   expected_table.diff!(table)
 end
 
-Then(/^I select (\d+):(\d+) from the 'From' dropdown menu$/) do |arg1, arg2|
-  select(arg1, from: 'booking_from_4i')
-  select(arg2, from: 'booking_from_5i')
+Then(/^I select (\d+):(\d+) from the "([^"]*)" dropdown menu$/) do | hr, min, menu_name |
+  select(hr,  from: "booking_#{menu_name.downcase}_4i")
+  select(min, from: "booking_#{menu_name.downcase}_5i")
 end
 
-Then(/^I select (\d+):(\d+) from the 'To' dropdown menu$/) do |arg1, arg2|
-  select(arg1, from: 'booking_to_4i')
-  select(arg2, from: 'booking_to_5i')
-end
