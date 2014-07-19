@@ -40,5 +40,21 @@ RSpec.describe BookingsController, :type => :controller do
       expect(response).to render_template :new
     end      
   end
+
+  describe 'GET #create' do
+
+    it 'calls the save method of the Booking model'
+
+    context 'with valid attributes' do
+      it 'saves the new Booking in the database'
+      it 'creates a flash[:notice] success message'
+      it 'renders the :index view'
+    end
+
+    context 'with invalid attributes' do
+      it 'does not save the new Booking in the database'
+      it 're-renders the :new view'
+    end
+  end
 end
 
