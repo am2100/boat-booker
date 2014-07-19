@@ -26,9 +26,9 @@ end
 Then(/^I select (\d+):(\d+) from the 'From' dropdown menu$/) do |arg1, arg2|
   select(arg1, from: 'booking_from_4i')
   select(arg2, from: 'booking_from_5i')
-  save_and_open_page
 end
 
 Then(/^I select (\d+):(\d+) from the 'To' dropdown menu$/) do |arg1, arg2|
-  pending # express the regexp above with the code you wish you had
+  select(arg1, from: 'booking_to_4i')
+  select(arg2, from: 'booking_to_5i')
 end
