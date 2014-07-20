@@ -3,8 +3,8 @@
 %h1= boat_booker_date(Time.now)
 
 = form_for @booking do |f|
-  = f.label :from, 'From'
-  = time_select(:booking, :from, { minute_step: 15, prompt: true })
-  = f.label :to, 'To'
-  = time_select(:booking, :to, { minute_step: 15, prompt: true })
+  = f.label :book_from, 'From'
+  = time_select(:booking, :book_from, { minute_step: 15, prompt: true })
+  = f.label :book_to, 'To'
+  = time_select(:booking, :book_to, { minute_step: 15, prompt: true })
   = submit_tag 'Book it!'

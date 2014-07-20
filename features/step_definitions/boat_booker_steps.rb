@@ -7,7 +7,7 @@ Given(/^the following bookings exist for today:$/) do |bookings|
     to_array   = h['To'].split(':')
     from = Time.utc(today.year, today.month, today.day, from_array[0], from_array[1])
     to   = Time.utc(today.year, today.month, today.day, to_array[0], to_array[1])
-    Booking.create!(from: from, to: to)
+    Booking.create!(book_from: from, book_to: to)
   end
 end
 
@@ -24,8 +24,8 @@ Then(/^the bookings list should include:$/) do |expected_table|
 end
 
 Then(/^I select (\d+):(\d+) from the "([^"]*)" dropdown menu$/) do | hr, min, menu_name |
-  select(hr,  from: "booking_#{menu_name.downcase}_4i")
-  select(min, from: "booking_#{menu_name.downcase}_5i")
+  select(hr,  from: "booking_book_#{menu_name.downcase}_4i")
+  select(min, from: "booking_book_#{menu_name.downcase}_5i")
 end
 
 Then(/^I should see the flash\[:notice\] "(.*?)"$/) do |msg|
