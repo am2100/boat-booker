@@ -1,5 +1,5 @@
 class Booking < ActiveRecord::Base
-  attr_accessible :from, :to
+  attr_accessible :book_from, :book_to
 
-  validates :from, :to, presence: true
+  validates :book_from, :book_to, presence: true
 end
