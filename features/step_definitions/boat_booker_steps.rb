@@ -28,3 +28,6 @@ Then(/^I select (\d+):(\d+) from the "([^"]*)" dropdown menu$/) do | hr, min, me
   select(min, from: "booking_#{menu_name.downcase}_5i")
 end
 
+Then(/^I should see the flash\[:notice\] "(.*?)"$/) do |msg|
+  expect(page).to have_content(msg)
+end

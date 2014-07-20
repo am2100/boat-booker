@@ -16,6 +16,7 @@ Feature: Create a boat booking
     And I press "Book it!"
     Then I am on the homepage
     And I should see today's date
+    And I should see the flash[:notice] "Your booking was saved successfully"
     And the bookings list should include:
       | From  | To    |
       | 06:00 | 12:30 |
