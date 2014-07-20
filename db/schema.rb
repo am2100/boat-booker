@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140717054806) do
+ActiveRecord::Schema.define(:version => 20140720070038) do
 
   create_table "bookings", :force => true do |t|
-    t.time     "from"
-    t.time     "to"
+    t.time     "book_from"
+    t.time     "book_to"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
