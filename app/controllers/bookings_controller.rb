@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   def index
+    flash.keep
     @bookings = Booking.find(:all)
   end
 
