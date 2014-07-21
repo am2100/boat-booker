@@ -17,4 +17,8 @@ class BookingsController < ApplicationController
       render :new
     end
   end
+
+  def edit
+    @booking = Booking.find(params[:id])
+  end
 end
