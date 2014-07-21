@@ -6,9 +6,11 @@
     %tr
       %th From
       %th To
-  - @bookings.each do |b|
+      %th
+  - @bookings.each do |booking|
     %tr
-      %td #{boat_booker_time(b.book_from)}
-      %td #{boat_booker_time(b.book_to)}
+      %td #{boat_booker_time(booking.book_from)}
+      %td #{boat_booker_time(booking.book_to)}
+      %td= link_to "Edit", edit_booking_path(booking)
 
 %p= link_to("Create new booking", new_booking_path)
