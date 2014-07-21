@@ -19,6 +19,9 @@ module NavigationHelpers
     when /^the create new booking page$/
       new_booking_path
 
+    when /^the edit booking page$/
+      edit_booking_path(1)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
