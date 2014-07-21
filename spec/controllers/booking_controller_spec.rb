@@ -97,7 +97,11 @@ RSpec.describe BookingsController, :type => :controller do
       expect(assigns(:booking)).to eq(booking)
     end
 
-    it 'renders the :edit view'
+    it 'renders the :edit view' do
+      booking = FactoryGirl.create(:booking)
+      get :edit, id: booking
+      expect(response).to render_template :edit
+    end
   end
 end
 
