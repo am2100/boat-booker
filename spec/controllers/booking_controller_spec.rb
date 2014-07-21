@@ -83,5 +83,15 @@ RSpec.describe BookingsController, :type => :controller do
       end
     end
   end
+
+  describe 'GET #edit' do
+    it 'calls the find method of the Booking model' do
+      booking = FactoryGirl.create(:booking)
+      expect(Booking).to receive(:find).with("1").and_return(booking)
+      get :edit, id: 1
+    end
+    it 'makes the requested Booking available to the view'
+    it 'renders the :edit view'
+  end
 end
 
