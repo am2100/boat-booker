@@ -1,9 +1,7 @@
 class BookingsController < ApplicationController
   def index
     flash.keep
-    @bookings = Booking.find(:all)
-#    @bookings = Booking.find(:all).order(from: :asc)
-#    @bookings = Booking.order(:from).all
+    @bookings = Booking.find(:all).sort! {|a,b| a.book_from.hour <=> b.book_from.hour}
   end
 
   def new
