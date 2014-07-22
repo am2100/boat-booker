@@ -1,5 +1,16 @@
 require 'time'
 
+Given(/^the following bookings exist:$/) do |bookings|
+  bookings.hashes.each do |hash|
+    date_array = hash['date'].split('/').reverse
+    from_array = hash['from'].split(':')
+    to_array   = hash['to'].split(':')
+    from = Time.utc(date_array[0], date_array[1], date_array[2], from_array[0])
+    to   = Time.utc(date_array[0], date_array[1], date_array[2], to_array[0])
+    Booking.create!(book_from: from, book_to: to)
+  end
+end
+
 Given(/^the following bookings exist for today:$/) do |bookings|
   today = Time.now
   bookings.hashes.each do |h|
@@ -9,6 +20,10 @@ Given(/^the following bookings exist for today:$/) do |bookings|
     to   = Time.utc(today.year, today.month, today.day, to_array[0], to_array[1])
     Booking.create!(book_from: from, book_to: to)
   end
+end
+
+Then(/^I should see Bookings$/) do
+  expect(page).to have_content('Bookings')
 end
 
 Then(/^I should see today's date$/) do
