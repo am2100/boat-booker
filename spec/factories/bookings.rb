@@ -3,6 +3,11 @@ FactoryGirl.define do
     book_from Time.utc(2014, 07, 01, 10, 0)
     book_to   Time.utc(2014, 07, 01, 11, 0)
 
+    factory :booking_update do
+      book_from Time.utc(2014, 07, 01, 11, 0)
+      book_to   Time.utc(2014, 07, 01, 12, 0)
+    end
+
     factory :invalid_booking do
       book_from nil
       book_to   nil
