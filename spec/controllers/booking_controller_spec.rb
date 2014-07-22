@@ -126,7 +126,7 @@ RSpec.describe BookingsController, :type => :controller do
       it 'updates @booking\'s attributes' do
         put :update, id: @booking, booking: FactoryGirl.attributes_for(:booking_update)
         @booking.reload
-        expect(@booking.book_from).to eq(Time.utc(2014, 07, 01, 11, 0)).and(@booking.book_to).to eq(Time.utc(2014, 07, 01, 12, 0)
+        expect(@booking.book_from).to eq(Time.utc(2014, 07, 01, 11, 0)).and(@booking.book_to).to eq(Time.utc(2014, 07, 01, 12, 0))
       end
 
       it 'sets a flash[:notice] message' do
@@ -144,7 +144,7 @@ RSpec.describe BookingsController, :type => :controller do
       it 'does not update @booking\'s attributes' do
         put :update, id: @booking, booking: FactoryGirl.attributes_for(:invalid_booking)
         @booking.reload
-        expect(@booking.book_from).to_not eq(nil)).and(@booking.book_to).to eq(nil)
+        expect(@booking.book_from).to_not eq(nil).and(@booking.book_to).to eq(nil)
       end
 
       it 're-renders the :edit view' do
