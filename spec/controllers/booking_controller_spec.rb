@@ -103,5 +103,55 @@ RSpec.describe BookingsController, :type => :controller do
       expect(response).to render_template :edit
     end
   end
+
+  describe 'POST #update' do
+
+    before :each do
+      @booking = FactoryGirl.create(:booking)
+    end
+
+    it 'calls the find method of the Booking model' do
+#      booking = FactoryGirl.create(:booking)
+      expect(Booking).to receive(:find).with("1").and_return(@booking)
+      put :update, id: @booking
+    end
+
+    it 'finds the requested booking' do
+#      booking = FactoryGirl.create(:booking)
+      put :update, id: @booking, booking: FactoryGirl.attributes_for(:booking)
+      expect(assigns(:booking)).to eq(@booking)
+    end
+
+    context 'with valid attributes' do
+      it 'updates @booking\'s attributes' do
+        put :update, id: @booking, booking: FactoryGirl.attributes_for(:booking_update)
+        @booking.reload
+        expect(@booking.book_from).to eq(Time.utc(2014, 07, 01, 11, 0)).and(@booking.book_to).to eq(Time.utc(2014, 07, 01, 12, 0)
+      end
+
+      it 'sets a flash[:notice] message' do
+        put :update, id: @booking, booking: FactoryGirl.attributes_for(:booking_update)
+        expect(flash[:notice]).to eq('Your booking was successfully updated')
+      end
+
+      it 're-directs to the homepage' do
+        put :update, id: @booking, booking: FactoryGirl.attributes_for(:booking_update)
+        expect(response).to redirect_to root_path
+      end      
+    end
+
+    context 'with invalid attributes' do
+      it 'does not update @booking\'s attributes' do
+        put :update, id: @booking, booking: FactoryGirl.attributes_for(:invalid_booking)
+        @booking.reload
+        expect(@booking.book_from).to_not eq(nil)).and(@booking.book_to).to eq(nil)
+      end
+
+      it 're-renders the :edit view' do
+        put :update, id: @booking, booking: FactoryGirl.attributes_for(:invalid_booking)
+        expect(response).to_render_template(:edit)
+      end
+    end
+  end
 end
 
