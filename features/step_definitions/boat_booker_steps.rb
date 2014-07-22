@@ -1,12 +1,15 @@
 require 'time'
+require 'date'
 
 Given(/^the following bookings exist:$/) do |bookings|
   bookings.hashes.each do |hash|
-    date_array = hash['date'].split('/').reverse
-    from_array = hash['from'].split(':')
-    to_array   = hash['to'].split(':')
-    from = Time.utc(date_array[0], date_array[1], date_array[2], from_array[0])
-    to   = Time.utc(date_array[0], date_array[1], date_array[2], to_array[0])
+    date_array = hash['date'].split('/').reverse.collect {|d| d.to_i}
+    from_array = hash['from'].split(':').collect {|f| f.to_i}
+    to_array   = hash['to'].split(':').collect {|t| t.to_i}
+
+    from = DateTime.new(date_array[0],date_array[1], date_array[2], from_array[0])
+    to   = DateTime.new(date_array[0],date_array[1], date_array[2], to_array[0])
+
     Booking.create!(book_from: from, book_to: to)
   end
 end

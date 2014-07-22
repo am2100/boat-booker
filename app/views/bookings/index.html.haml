@@ -1,17 +1,19 @@
 -# views/booking/index.html.haml
 
-%h1= boat_booker_date(Time.now)
+%h1 Oxford Medley Boat Club
+%p= link_to("Create new booking", new_booking_path)
 %table#bookings
   %caption Bookings
   %thead
     %tr
+      %th Date
       %th From
       %th To
-      %th
+      %th Skipper
   - @bookings.each do |booking|
     %tr
+      %td #{boat_booker_date(booking.book_from)}
       %td #{boat_booker_time(booking.book_from)}
       %td #{boat_booker_time(booking.book_to)}
-      %td= link_to "Edit", edit_booking_path(booking)
-
-%p= link_to("Create new booking", new_booking_path)
+      %td
+-#      %td= link_to "Edit", edit_booking_path(booking)
