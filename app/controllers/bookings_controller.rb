@@ -1,7 +1,8 @@
 class BookingsController < ApplicationController
   def index
     flash.keep
-    @bookings = Booking.find(:all).sort! {|a,b| a.book_from.hour <=> b.book_from.hour}
+#    @bookings = Booking.find(:all).sort! {|a,b| a.book_from.hour <=> b.book_from.hour}
+    @bookings = Booking.find(:all)
   end
 
   def new
@@ -10,6 +11,7 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(params[:booking])
+#    p params
     if @booking.save
       flash[:notice] = "Your booking was saved successfully"
       redirect_to root_path
@@ -26,7 +28,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
 
     if @booking.save(params[:booking])
-      flash[:notice] = "Your booking was successfully saved"
+      flash[:notice] = "Your booking was successfully updated"
       redirect_to root_path
     else
       render :edit

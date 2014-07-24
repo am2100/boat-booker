@@ -2,8 +2,14 @@ require 'rails_helper'
 
 RSpec.describe BookingsController, :type => :controller do
   describe 'GET #index' do
+    it "responds successfully with an HTTP 200 status code" do
+      get :index
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
     it 'calls the find method of the Booking model' do
-      fake_results = [FactoryGirl.create(:booking)]
+      fake_results = [double('booking_01'), double('booking_02')]
       expect(Booking).to receive(:find).with(:all).and_return(fake_results)
       get :index
     end
@@ -22,8 +28,15 @@ RSpec.describe BookingsController, :type => :controller do
   end
 
   describe 'GET #new' do
+    it "responds successfully with an HTTP 200 status code" do
+      get :new
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
     it 'calls the new method of the Booking model' do
-      new_booking = Booking.new
+#      new_booking = Booking.new
+      new_booking = double('new_booking')
       expect(Booking).to receive(:new).and_return(new_booking)
       get :new
     end
@@ -42,13 +55,22 @@ RSpec.describe BookingsController, :type => :controller do
   end
 
   describe 'POST #create' do
+    it "responds successfully with an HTTP 200 status code" do
+      post :create
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
 
     it 'calls the new method of the Booking model' do
-      new_booking = Booking.new
+#      new_booking = Booking.new
+      new_booking = double('new_booking')
+#      attributes = FactoryGirl.attributes_for(:booking).map {|c| c.to_s}
+      p FactoryGirl.attributes_for(:booking)
       expect(Booking).to receive(:new).
         with(FactoryGirl.attributes_for(:booking)).
         and_return(new_booking)
       post :create, booking: FactoryGirl.attributes_for(:booking)
+      p params
     end
 
     context 'with valid attributes' do
@@ -85,6 +107,13 @@ RSpec.describe BookingsController, :type => :controller do
   end
 
   describe 'GET #edit' do
+    it "responds successfully with an HTTP 200 status code" do
+      booking = FactoryGirl.create(:booking)
+      get :edit, id: booking
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
+    end
+
     it 'calls the find method of the Booking model' do
       booking = FactoryGirl.create(:booking)
       expect(Booking).to receive(:find).with("1").and_return(booking)
@@ -104,10 +133,13 @@ RSpec.describe BookingsController, :type => :controller do
     end
   end
 
-  describe 'POST #update' do
-
-    before :each do
-#      @booking = FactoryGirl.create(:booking)
+  describe 'PUT #update' do
+    it "responds successfully with an HTTP 200 status code", :pending => true do
+      booking = FactoryGirl.create(:booking)
+#      post :update, id: booking, booking: FactoryGirl.attributes_for(:booking_update)
+      put :update, id: booking, booking: FactoryGirl.attributes_for(:booking_update)
+      expect(response).to be_success
+      expect(response).to have_http_status(200)
     end
 
     it 'calls the find method of the Booking model' do
