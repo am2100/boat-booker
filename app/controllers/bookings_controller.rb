@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
   def index
     flash.keep
 #    @bookings = Booking.find(:all).sort! {|a,b| a.book_from.hour <=> b.book_from.hour}
-    @bookings = Booking.find(:all)
+    @bookings = Booking.find(:all).sort! {|a,b| a.book_from <=> b.book_from}
   end
 
   def new
@@ -27,7 +27,7 @@ class BookingsController < ApplicationController
   def update
     @booking = Booking.find(params[:id])
 
-    if @booking.save(params[:booking])
+    if @booking.update_attributes(params[:booking])
       flash[:notice] = "Your booking was successfully updated"
       redirect_to root_path
     else
