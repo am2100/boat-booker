@@ -19,8 +19,8 @@ Given(/^the following bookings exist for today:$/) do |bookings|
   bookings.hashes.each do |h|
     from_array = h['From'].split(':')
     to_array   = h['To'].split(':')
-    from = Time.utc(today.year, today.month, today.day, from_array[0], from_array[1])
-    to   = Time.utc(today.year, today.month, today.day, to_array[0], to_array[1])
+    from = DateTime.new(date_array[0],date_array[1], date_array[2], from_array[0])
+    to   = DateTime.new(date_array[0],date_array[1], date_array[2], to_array[0])
     Booking.create!(book_from: from, book_to: to)
   end
 end
