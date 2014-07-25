@@ -15,5 +15,5 @@
       %td #{boat_booker_date(booking.book_from)}
       %td #{boat_booker_time(booking.book_from)}
       %td #{boat_booker_time(booking.book_to)}
-      %td
+      %td #{booking.user.name}
 -#      %td= link_to "Edit", edit_booking_path(booking)
