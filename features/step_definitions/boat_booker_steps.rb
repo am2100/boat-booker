@@ -18,6 +18,7 @@ Given(/^the following bookings exist:$/) do |bookings|
   end
 end
 
+=begin
 Given(/^the following bookings exist for today:$/) do |bookings|
   today = Time.now
   bookings.hashes.each do |h|
@@ -27,6 +28,11 @@ Given(/^the following bookings exist for today:$/) do |bookings|
     to   = DateTime.new(date_array[0],date_array[1], date_array[2], to_array[0])
     Booking.create!(book_from: from, book_to: to)
   end
+end
+=end
+
+Given(/^I am logged in as Jim$/) do
+  expect(session[:user]).to eq('Jim')
 end
 
 Then(/^I should see Bookings$/) do
