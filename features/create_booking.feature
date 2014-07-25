@@ -1,7 +1,7 @@
 Feature: Create a boat booking
 
   Background:
-    Given the following bookings exist for today:
+    Given the following bookings exist:
       | date       | from  | to    | user      |
       | 20/07/2014 | 10:00 | 11:00 | Deana     |
       | 21/07/2014 | 10:00 | 12:00 | Sebastian |
