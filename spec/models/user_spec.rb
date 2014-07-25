@@ -8,4 +8,9 @@ RSpec.describe User, :type => :model do
   it 'is invalid without a name' do
     expect(FactoryGirl.build(:invalid_user)).to_not be_valid
   end
+
+  it 'is invalid without a unique name' do
+    FactoryGirl.create(:user)
+    expect(FactoryGirl.build(:user)).to_not be_valid
+  end
 end
