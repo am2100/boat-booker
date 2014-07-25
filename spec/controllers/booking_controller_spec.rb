@@ -65,7 +65,7 @@ RSpec.describe BookingsController, :type => :controller do
 #      new_booking = Booking.new
       new_booking = double('new_booking')
 #      attributes = FactoryGirl.attributes_for(:booking).map {|c| c.to_s}
-      p FactoryGirl.attributes_for(:booking)
+#      p FactoryGirl.attributes_for(:booking)
       expect(Booking).to receive(:new).
         with(FactoryGirl.attributes_for(:booking)).
         and_return(new_booking)
