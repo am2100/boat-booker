@@ -1,6 +1,6 @@
 Feature: The homepage shows a list of existing bookings
 
-As a User I want to see a list of future boat bookings
+As a User I want to see a list of boat bookings
 ordered nearest to furthest in time
 so I can quickly review boat availability
 
