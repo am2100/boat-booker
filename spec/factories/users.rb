@@ -2,6 +2,10 @@
 
 FactoryGirl.define do
   factory :user do
-    name "MyString"
+    name "Bob"
+
+    factory :invalid_user do
+      name nil
+    end
   end
 end
