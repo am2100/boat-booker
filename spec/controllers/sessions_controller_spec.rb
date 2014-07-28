@@ -12,17 +12,32 @@ RSpec.describe SessionsController, :type => :controller do
 
   describe 'POST #create' do
     it 'calls the find_by_name method of the User model' do
-      user = double('Jim')
-      expect(User).to receive(:find_by_name).with('Jim').and_return(user)
-      post :create, {name: 'Jim', password: 'banana'}
+      user = FactoryGirl.create(:user)
+      expect(User).to receive(:find_by_name).with('Bob').and_return(user)
+      post :create, FactoryGirl.attributes_for(:user)
     end
 
     context 'with valid credentials' do
-      it 'sets the session[:user_id] variable'
+      it 'sets the session[:user_id] variable' do
+        user = FactoryGirl.create(:user)
+        allow(User).to receive(:find_by_name).with('Bob').and_return(user)
+        post :create, FactoryGirl.attributes_for(:user)
+        expect(session[:user_id]).to eq(user.id)
+      end
 
-      it 'sets a flash[:notice] message'
+      it 'sets a flash[:notice] message' do
+        user = FactoryGirl.create(:user)
+        allow(User).to receive(:find_by_name).with('Bob').and_return(user)
+        post :create, FactoryGirl.attributes_for(:user)
+        expect(flash[:notice]).to eq('Logged in!')
+      end
 
-      it 'redirects to the homepage'
+      it 'redirects to the homepage' do
+        user = FactoryGirl.create(:user)
+        allow(User).to receive(:find_by_name).with('Bob').and_return(user)
+        post :create, FactoryGirl.attributes_for(:user)
+        expect(response).to redirect_to root_path
+      end
     end
 
     context 'with invalid credentials' do
