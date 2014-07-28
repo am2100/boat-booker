@@ -38,9 +38,17 @@ RSpec.describe SessionsController, :type => :controller do
     end
 
     context 'with invalid credentials' do
-      it 'sets a flash[:notice] message'
+      it 'sets a flash[:notice] message' do 
+        @user = FactoryGirl.build(:invalid_user)
+        allow(User).to receive(:find_by_name)
+        post :create, FactoryGirl.attributes_for(:invalid_user)
+        expect(flash[:notice]).to eq('Name or password is invalid')
+      end
 
-      it 're-renders the :new view'
+      it 're-renders the :new view' do
+        post :create, FactoryGirl.attributes_for(:invalid_user)
+        expect(response).to render_template :new
+      end
     end
   end
 end
