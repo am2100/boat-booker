@@ -18,24 +18,21 @@ RSpec.describe SessionsController, :type => :controller do
     end
 
     context 'with valid credentials' do
-      it 'sets the session[:user_id] variable' do
-        user = FactoryGirl.create(:user)
-        allow(User).to receive(:find_by_name).with('Bob').and_return(user)
+      before :each do
+        @user = FactoryGirl.create(:user)
+        allow(User).to receive(:find_by_name).with('Bob').and_return(@user)
         post :create, FactoryGirl.attributes_for(:user)
-        expect(session[:user_id]).to eq(user.id)
+      end
+
+      it 'sets the session[:user_id] variable' do
+        expect(session[:user_id]).to eq(@user.id)
       end
 
       it 'sets a flash[:notice] message' do
-        user = FactoryGirl.create(:user)
-        allow(User).to receive(:find_by_name).with('Bob').and_return(user)
-        post :create, FactoryGirl.attributes_for(:user)
         expect(flash[:notice]).to eq('Logged in!')
       end
 
       it 'redirects to the homepage' do
-        user = FactoryGirl.create(:user)
-        allow(User).to receive(:find_by_name).with('Bob').and_return(user)
-        post :create, FactoryGirl.attributes_for(:user)
         expect(response).to redirect_to root_path
       end
     end
