@@ -61,16 +61,11 @@ RSpec.describe BookingsController, :type => :controller do
     end
 
     it 'calls the new method of the Booking model' do
-      pending "Failing because of unexpected attributes supplied to .with method."
-#      new_booking = Booking.new
-      new_booking = double('new_booking')
-#      attributes = FactoryGirl.attributes_for(:booking).map {|c| c.to_s}
-#      p FactoryGirl.attributes_for(:booking)
+      new_booking = Booking.new(FactoryGirl.attributes_for(:booking))
       expect(Booking).to receive(:new).
-        with(FactoryGirl.attributes_for(:booking)).
+        with("book_from"=>"2014-07-01T10:00:00+00:00", "book_to"=>"2014-07-01T11:00:00+00:00").
         and_return(new_booking)
-      post :create, booking: FactoryGirl.attributes_for(:booking)
-      p params
+      post :create, id: new_booking, booking: FactoryGirl.attributes_for(:booking)
     end
 
     context 'with valid attributes' do
