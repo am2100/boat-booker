@@ -51,4 +51,21 @@ RSpec.describe SessionsController, :type => :controller do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    it 'unsets the session[:user_id] variable' do
+      delete :destroy
+      expect(session[:user_id]).to eq(nil)
+    end
+
+    it 'sets a flash[:notice] message' do
+      delete :destroy
+      expect(flash[:notice]).to eq('Logged out!')
+    end
+
+    it 'redirects to the homepage' do
+      delete :destroy
+      expect(response).to redirect_to root_path
+    end
+  end
 end
