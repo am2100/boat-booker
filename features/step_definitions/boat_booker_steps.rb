@@ -3,7 +3,9 @@ require 'date'
 
 Given(/^the following bookings exist:$/) do |bookings|
   bookings.hashes.each do |hash|
-    user = User.new(name: hash['user']).valid? ? User.create!(name: hash['user']) : User.find_by_name(hash['user'])
+    user = User.new(name: hash['user'], password: 'banana').valid? ? 
+      User.create!(name: hash['user'], password: 'banana') : 
+      User.find_by_name(hash['user'])
 
     date_array = hash['date'].split('/').reverse.collect {|d| d.to_i}
     from_array = hash['from'].split(':').collect {|f| f.to_i}
