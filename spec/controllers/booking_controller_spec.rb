@@ -154,8 +154,7 @@ RSpec.describe BookingsController, :type => :controller do
         booking = FactoryGirl.create(:booking)
         put :update, id: booking, booking: FactoryGirl.attributes_for(:booking_update)
         booking.reload
-#        expect(booking.book_from.to_datetime).to eq(DateTime.new(2014, 07, 01, 11, 0))
-       expect(booking.book_from).to eq(DateTime.new(2014, 07, 01, 11, 0).to_s)
+        expect(booking.book_from).to eq(DateTime.new(2014, 07, 01, 11, 0).to_s)
       end
 
       it 'sets a flash[:notice] message' do
