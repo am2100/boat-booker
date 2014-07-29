@@ -12,5 +12,10 @@ FactoryGirl.define do
     factory :invalid_password_user do
       password nil
     end
+
+    factory :jim do
+      name 'Jim'
+      password 'banana'
+    end
   end
 end

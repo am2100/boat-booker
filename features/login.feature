@@ -8,13 +8,12 @@ so that I can administrate my bookings and keep the site secure
     And a valid user called "Jim" exists
     
   Scenario: Successful login
-    When I follow "Log in"
-    And I am on the login page
-    And I fill in "name" with "Jim"
-    And I fill in "password" with "banana"
-    And I press "Log in"
+    When I log in as "Jim"
     Then I am on the homepage
     And I should see "Logged in as Jim"
 
-
   Scenario: Successful logout
+    When I am logged in as "Jim"
+    And I follow "Log out"
+    Then I am on the homepage
+    And I should see "Log in"

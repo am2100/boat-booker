@@ -21,24 +21,17 @@ Given(/^the following bookings exist:$/) do |bookings|
 end
 
 Given(/^a valid user called "(.*?)" exists$/) do |arg1|
-  User.create!(name: 'Jim', password: 'banana')
+  FactoryGirl.create(:jim)
 end
 
-=begin
-Given(/^the following bookings exist for today:$/) do |bookings|
-  today = Time.now
-  bookings.hashes.each do |h|
-    from_array = h['From'].split(':')
-    to_array   = h['To'].split(':')
-    from = DateTime.new(date_array[0],date_array[1], date_array[2], from_array[0])
-    to   = DateTime.new(date_array[0],date_array[1], date_array[2], to_array[0])
-    Booking.create!(book_from: from, book_to: to)
-  end
-end
-=end
-
-Given(/^I am logged in as "([^"]*)"$/) do |user|
-  
+Given(/^I (?:log|am logged) in as "([^"]*)"$/) do |user|
+  steps %{
+    When I follow "Log in"
+    And I am on the login page
+    And I fill in "name" with "Jim"
+    And I fill in "password" with "banana"
+    And I press "Log in"
+  }
 end
 
 Then(/^I should see Bookings$/) do

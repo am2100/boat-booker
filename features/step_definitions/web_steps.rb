@@ -55,6 +55,7 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
+#  save_and_open_page
   click_link(link)
 end
 
@@ -111,7 +112,7 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
     assert page.has_content?(text)
   end
 =end
-save_and_open_page
+#save_and_open_page
   if page.respond_to? :expect
     expect(page).to have_content(text)
   else
