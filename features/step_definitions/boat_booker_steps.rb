@@ -1,5 +1,3 @@
-#require 'time'
-#require 'date'
 
 Given(/^the following bookings exist:$/) do |bookings|
   bookings.hashes.each do |hash|
@@ -25,13 +23,11 @@ Given(/^a valid user called "(.*?)" exists$/) do |arg1|
 end
 
 Given(/^I (?:log|am logged) in as "([^"]*)"$/) do |user|
-  steps %{
-    When I follow "Log in"
-    And I am on the login page
-    And I fill in "name" with "Jim"
-    And I fill in "password" with "banana"
-    And I press "Log in"
-  }
+  click_link 'Log in'
+  expect(current_path).to eq(login_path)
+  fill_in 'name', with: user
+  fill_in 'password', with: 'banana'
+  click_button 'Log in'
 end
 
 Then(/^I should see Bookings$/) do
