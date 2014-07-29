@@ -5,6 +5,7 @@ so that I can administrate my bookings and keep the site secure
 
   Background:
     Given I am on the homepage
+    And a valid user called "Jim" exists
     
   Scenario: Successful login
     When I follow "Log in"

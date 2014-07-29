@@ -115,7 +115,7 @@ save_and_open_page
   if page.respond_to? :expect
     expect(page).to have_content(text)
   else
-    assert page.has_context?(text)
+    assert page.has_content?(text)
   end
 end
 

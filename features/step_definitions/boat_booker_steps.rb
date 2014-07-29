@@ -20,6 +20,10 @@ Given(/^the following bookings exist:$/) do |bookings|
   end
 end
 
+Given(/^a valid user called "(.*?)" exists$/) do |arg1|
+  User.create!(name: 'Jim', password: 'banana')
+end
+
 =begin
 Given(/^the following bookings exist for today:$/) do |bookings|
   today = Time.now
