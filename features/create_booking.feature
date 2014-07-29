@@ -7,8 +7,14 @@ Feature: Create a boat booking
       | 21/07/2014 | 10:00 | 12:00 | Sebastian |
       | 21/07/2014 | 15:00 | 20:00 | Jim       |
       | 28/07/2014 | 12:00 | 16:00 | Roger     |
-    And I am logged in as Jim
-    And I am on the homepage
+    And I am logged in as "Jim"
+    And I press "Log in"
+    And I am on the login page
+    And I fill in name with "Jim"
+    And I fill in password with "banana"
+    And I press "Log in"
+    Then I am on the homepage
+    And I should see "Logged in as Jim"
     
   Scenario: Successful boat booking for today
     When I follow "Create new booking"

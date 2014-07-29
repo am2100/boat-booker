@@ -33,8 +33,8 @@ Given(/^the following bookings exist for today:$/) do |bookings|
 end
 =end
 
-Given(/^I am logged in as Jim$/) do
-  expect(session[:user]).to eq('Jim')
+Given(/^I am logged in as "([^"]*)"$/) do |user|
+  
 end
 
 Then(/^I should see Bookings$/) do
