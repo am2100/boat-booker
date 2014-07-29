@@ -7,11 +7,10 @@ so that I can administrate my bookings and keep the site secure
     Given I am on the homepage
     
   Scenario: Successful login
-    And I can see "Log in"
-    And I press "Log in"
+    When I follow "Log in"
     And I am on the login page
-    And I fill in name with "Jim"
-    And I fill in password with "banana"
+    And I fill in "name" with "Jim"
+    And I fill in "password" with "banana"
     And I press "Log in"
     Then I am on the homepage
     And I should see "Logged in as Jim"
