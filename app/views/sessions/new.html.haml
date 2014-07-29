@@ -1,10 +1,10 @@
 -# sessions/new.html.haml
 
-%h1 Log In
+%h1 Oxford Medley Boat Club
 
 = form_tag sessions_path do
-  = label_tag :name, 'Name'
+  = label_tag :name, 'Name:'
   = text_field_tag :name, params[:name]
-  = label_tag :password, 'Password'
+  = label_tag :password, 'Password:'
   = password_field_tag :password
   = submit_tag "Log in"
