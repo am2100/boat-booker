@@ -50,7 +50,7 @@ When /^(?:|I )go to (.+)$/ do |page_name|
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|
-  save_and_open_page
+#  save_and_open_page
   click_button(button)
 end
 
@@ -104,10 +104,18 @@ When /^(?:|I )attach the file "([^"]*)" to "([^"]*)"$/ do |path, field|
 end
 
 Then /^(?:|I )should see "([^"]*)"$/ do |text|
+=begin
   if page.respond_to? :should
     page.should have_content(text)
   else
     assert page.has_content?(text)
+  end
+=end
+save_and_open_page
+  if page.respond_to? :expect
+    expect(page).to have_content(text)
+  else
+    assert page.has_context?(text)
   end
 end
 
