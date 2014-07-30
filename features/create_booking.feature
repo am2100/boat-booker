@@ -42,10 +42,18 @@ Feature: Create a boat booking
     Then I am on the create new booking page
     And I should see the flash[:warning] "Oops! Date doesn't exist. Please try again"
 
-  Scenario: My booking overlaps with another booking
+  Scenario: Make a booking that overlaps with another booking
     When I am logged in as "Jim"
     And I follow "Create new booking"
     And I fill in the new booking form with "10:00", "14:00" and "20/07/2014"
     And I press "Book it!"
     Then I am on the create new booking page
     And I should see the flash[:warning] "Sorry, the boat is only available on this date between the following times: 08:00-10:00, 11:00-12:00, 14:00-22:00"
+
+  Scenario: Make a back to front booking (Ends before it starts!)
+    When I am logged in as "Jim"
+    And I follow "Create new booking"
+    And I fill in the new booking form with "14:00", "10:00" and "20/07/2014"
+    And I press "Book it!"
+    Then I am on the create new booking page
+    And I should see the flash[:warning] "Oops! Your booking ends before it begins! Please check the times you supplied and try again"
