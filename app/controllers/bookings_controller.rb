@@ -5,21 +5,18 @@ class BookingsController < ApplicationController
   end
 
   def new
+    @month_options = Booking.month_options
+    @from_time_options = Booking.from_time_options
+    @to_time_options = Booking.to_time_options
     @booking = Booking.new
   end
 
   def create
-#raise params
     year = DateTime.now.year
-p year
     month = params[:date][:month].to_i
-p month
     day = params[:date][:day].to_i
-p day
     from = params[:book][:from].to_i
-p from
     to = params[:book][:to].to_i
-p to
 
     book_from = DateTime.new(year, month, day, from)
     book_to   = DateTime.new(year, month, day, to)

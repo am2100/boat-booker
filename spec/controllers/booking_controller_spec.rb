@@ -34,6 +34,45 @@ RSpec.describe BookingsController, :type => :controller do
       expect(response).to have_http_status(200)
     end
 
+    it 'calls the month_options method of the Booking model' do
+      months = [['Mar', 3]]
+      expect(Booking).to receive(:month_options).and_return(months)
+      get :new
+    end
+
+    it 'makes an array of month_options available to the view' do
+      months = [['Mar', 3]]
+      allow(Booking).to receive(:month_options).and_return(months)
+      get :new
+      expect(assigns(:month_options)).to eq(months)
+    end      
+
+    it 'calls the from_time_options method of the Booking model' do
+      from_times = [['10:00', 10]]
+      expect(Booking).to receive(:from_time_options).and_return(from_times)
+      get :new
+    end
+
+    it 'makes an array of from_time_options available to the view' do
+      from_times = [['10:00', 10]]
+      allow(Booking).to receive(:from_time_options).and_return(from_times)
+      get :new
+      expect(assigns(:from_time_options)).to eq(from_times)
+    end
+
+    it 'calls the to_time_options method of the Booking model' do
+      to_times = [['10:00', 10]]
+      expect(Booking).to receive(:to_time_options).and_return(to_times)
+      get :new
+    end
+
+    it 'makes an array of to_time_options available to the view' do
+      to_times = [['10:00', 10]]
+      allow(Booking).to receive(:to_time_options).and_return(to_times)
+      get :new
+      expect(assigns(:to_time_options)).to eq(to_times)
+    end
+
     it 'calls the new method of the Booking model' do
       new_booking = double('new_booking')
       expect(Booking).to receive(:new).and_return(new_booking)
