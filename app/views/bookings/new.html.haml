@@ -7,13 +7,13 @@
 = form_for @booking do |f|
   %div
     = label_tag :date, 'Date:'
-    = select('date', 'day', (1..31).to_a.collect {|d| [ sprintf("%02d", d), d ] }, { include_blank: true })
+    = select('date', 'day', @day_options, { include_blank: true })
     %span /
-    = select('date', 'month', %w{ Mar Apr May Jun Jul Aug Sept Oct }, { include_blank: true })
+    = select('date', 'month', @month_options, { include_blank: true })
   %div
     = label_tag :book, 'From:'
-    = select('book', 'from', (8..20).to_a.collect {|hr| [ sprintf("%02d:00", hr), hr ] }, { include_blank: true })
+    = select('book', 'from', @from_time_options, { include_blank: true })
     = label_tag :book, 'To:'
-    = select('book', 'to', (9..22).to_a.collect {|hr| [ sprintf("%02d:00", hr), hr ] }, { include_blank: true })
+    = select('book', 'to', @to_time_options, { include_blank: true })
   %div
     = submit_tag 'Book it!'
