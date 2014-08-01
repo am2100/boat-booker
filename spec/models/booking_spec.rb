@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'date'
 
 RSpec.describe Booking, :type => :model do
   it 'has a valid factory' do
@@ -101,5 +102,20 @@ RSpec.describe Booking, :type => :model do
     pretty_10 = Booking.pretty_time(10)
     expect(pretty_01).to eq('01:00')
     expect(pretty_10).to eq('10:00')
+  end
+
+  it 'builds a new booking object from an array of parameters' do
+    fake_book_from = DateTime.new(DateTime.now.year, 1, 1, 10)
+    fake_book_to = DateTime.new(DateTime.now.year, 1, 1, 11)
+
+    user = FactoryGirl.create(:jim)
+    params = { date: { month: '01', day: '01' }, book: { from: '10', to: '11' } }
+
+    booking = Booking.build_booking(params, user)
+
+    expect(booking).to be_instance_of(Booking)
+    expect(booking.user.name).to eq('Jim')
+    expect(booking.book_from).to eq(fake_book_from)
+    expect(booking.book_to).to eq(fake_book_to)
   end
 end
