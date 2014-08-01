@@ -16,6 +16,12 @@ class Booking < ActiveRecord::Base
     return options
   end
 
+  def self.day_options
+    options = []
+    (1..31).to_a.collect {|d| options << [ sprintf("%02d", d), d ] }
+    return options
+  end
+
   def self.from_time_options
     options = []
     BOOKING_TIMES.each {|time| options << [ Booking::pretty_time(time), time ]}
