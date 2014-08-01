@@ -13,16 +13,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    year = DateTime.now.year
-    month = params[:date][:month].to_i
-    day = params[:date][:day].to_i
-    from = params[:book][:from].to_i
-    to = params[:book][:to].to_i
-
-    book_from = DateTime.new(year, month, day, from)
-    book_to   = DateTime.new(year, month, day, to)
-
-    @booking = Booking.new(book_from: book_from, book_to: book_to, user_id: current_user.id)
+    @booking = Booking.build_booking(params, current_user)
 
     if @booking.save
       flash[:notice] = "Your booking was saved successfully"
