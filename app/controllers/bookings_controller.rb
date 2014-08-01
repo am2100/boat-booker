@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
 
   def new
     @month_options = Booking.month_options
+    @day_options = Booking.day_options
     @from_time_options = Booking.from_time_options
     @to_time_options = Booking.to_time_options
     @booking = Booking.new

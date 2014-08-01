@@ -47,6 +47,19 @@ RSpec.describe BookingsController, :type => :controller do
       expect(assigns(:month_options)).to eq(months)
     end      
 
+    it 'calls the day_options method of the Booking model' do
+      days = [['01', 1]]
+      expect(Booking).to receive(:day_options).and_return(days)
+      get :new
+    end
+
+    it 'makes an array of day_options available to the view' do
+      days = [['01', 1]]
+      allow(Booking).to receive(:day_options).and_return(days)
+      get :new
+      expect(assigns(:day_options)).to eq(days)
+    end
+
     it 'calls the from_time_options method of the Booking model' do
       from_times = [['10:00', 10]]
       expect(Booking).to receive(:from_time_options).and_return(from_times)
