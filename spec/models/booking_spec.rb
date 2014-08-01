@@ -96,4 +96,10 @@ RSpec.describe Booking, :type => :model do
                            ['22:00', 22]])
   end
 
+  it 'returns a pretty time string' do
+    pretty_01 = Booking.pretty_time(1)
+    pretty_10 = Booking.pretty_time(10)
+    expect(pretty_01).to eq('01:00')
+    expect(pretty_10).to eq('10:00')
+  end
 end
