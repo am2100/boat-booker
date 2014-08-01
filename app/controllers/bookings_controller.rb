@@ -22,7 +22,8 @@ class BookingsController < ApplicationController
     book_from = DateTime.new(year, month, day, from)
     book_to   = DateTime.new(year, month, day, to)
 
-    @booking = Booking.new(book_from: book_from, book_to: book_to)
+    @booking = Booking.new(book_from: book_from, book_to: book_to, user_id: current_user.id)
+
     if @booking.save
       flash[:notice] = "Your booking was saved successfully"
       redirect_to root_path
