@@ -1,7 +1,7 @@
 require 'date'
 
 class Booking < ActiveRecord::Base
-  attr_accessible :book_from, :book_to
+  attr_accessible :book_from, :book_to, :user_id
 
   belongs_to :user
 
