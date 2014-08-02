@@ -6,6 +6,10 @@ RSpec.describe Booking, :type => :model do
     expect(FactoryGirl.build(:booking)).to be_valid
   end
 
+  it 'finds the owner of the booking' do
+    expect(FactoryGirl.build(:booking).user.name).to eq('Bob')
+  end
+
   it 'is invalid without a start time' do
     expect(FactoryGirl.build(:invalid_from_booking)).to_not be_valid
   end
@@ -13,6 +17,12 @@ RSpec.describe Booking, :type => :model do
   it 'is invalid without an end time' do
     expect(FactoryGirl.build(:invalid_to_booking)).to_not be_valid
   end
+
+  it 'is invalid with a non-existent date'
+
+  it 'is invalid if book_from and book_to are the same'
+
+  it 'is invalid if book_from is greater than book_to'
 
   it 'returns an array of month options' do
     options = Booking.month_options
