@@ -18,6 +18,8 @@ RSpec.describe Booking, :type => :model do
     expect(FactoryGirl.build(:invalid_to_booking)).to_not be_valid
   end
 
+  it 'is invalid if it doesn\'t belong to a user'
+
   it 'is invalid with a non-existent date'
 
   it 'is invalid if book_from and book_to are the same'
