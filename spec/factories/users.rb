@@ -5,12 +5,16 @@ FactoryGirl.define do
     name "Bob"
     password "banana"
 
+    # user_with_bookings will create booking data after the user has been created
     factory :user_with_bookings do
       name 'Alice'
       password 'banana'
 
-      # user_with_bookings will create booking data after the user has been created
-      transient do
+      # bookings_count is declared as a transient attribute and available in
+      # attributes on the factory, as well as the callback via the evaluator.
+      # Nb. transient is only available in '~> 5.0.0'. Use ignore for earlier
+      # versions of FactoryGirl.
+      ignore do
         bookings_count 5
       end
 

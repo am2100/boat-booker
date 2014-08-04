@@ -5,6 +5,10 @@ RSpec.describe User, :type => :model do
     expect(FactoryGirl.build(:user)).to be_valid
   end
 
+  it 'has a valid factory with bookings' do
+    expect(FactoryGirl.create(:user_with_bookings)).to be_valid
+  end
+
   it 'finds bookings which belong to that user' do
     user = FactoryGirl.create(:user)
     booking = FactoryGirl.create(:booking, user_id: 1)
