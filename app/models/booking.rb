@@ -5,7 +5,7 @@ class Booking < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :book_from, :book_to, :user_id, presence: true
+  validates :book_from, :book_to, :user, presence: true
 
   BOAT_SEASON = %w{ Mar Apr May Jun Jul Aug Sep Oct }
   BOOKING_TIMES = (8..22).to_a
