@@ -31,6 +31,7 @@ FactoryGirl.define do
     factory :invalid_no_user_booking do
       book_from DateTime.new(2014, 07, 01, 10, 0)
       book_to   DateTime.new(2014, 07, 01, 11, 0)
+      user nil
     end
   end
 end
