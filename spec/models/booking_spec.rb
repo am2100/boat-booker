@@ -22,7 +22,9 @@ RSpec.describe Booking, :type => :model do
     expect(FactoryGirl.build(:invalid_no_user_booking)).to_not be_valid
   end
 
-  it 'is invalid with a non-existent date'
+  it 'is invalid with a non-existent date' do
+    expect(FactoryGirl.build(:invalid_non_existent_date_booking)).to_not be_valid
+  end
 
   it 'is invalid if book_from and book_to are the same'
 
