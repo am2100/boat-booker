@@ -34,10 +34,10 @@ FactoryGirl.define do
       user nil
     end
 
-    factory :invalid_non_existent_date_booking do
-      book_from DateTime.new(2014, 02, 31, 10, 0)
-      book_to DateTime.new(2014, 02, 31, 11, 0)
-      user      
-    end
+#    factory :invalid_non_existent_date_booking do
+#      book_from DateTime.new(2014, 02, 31, 10, 0)
+#      book_to DateTime.new(2014, 02, 31, 11, 0)
+#      user      
+#    end
   end
 end
