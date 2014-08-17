@@ -37,7 +37,6 @@ FactoryGirl.define do
 
     factory :jim do
       name 'Jim'
-      password 'banana'
     end
   end
 end
